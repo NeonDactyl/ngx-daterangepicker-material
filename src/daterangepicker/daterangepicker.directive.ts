@@ -51,6 +51,10 @@ export class DaterangepickerDirective implements OnInit, OnChanges, DoCheck {
   @Input()
   maxDate: _moment.Moment
   @Input()
+  defaultLeftCalendarMonth: _moment.Moment
+  @Input()
+  defaultRightCalendarMonth: _moment.Moment
+  @Input()
   autoApply: boolean;
   @Input()
   alwaysShowCalendars: boolean;

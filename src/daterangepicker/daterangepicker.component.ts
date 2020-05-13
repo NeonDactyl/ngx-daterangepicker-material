@@ -51,6 +51,10 @@ export class DaterangepickerComponent implements OnInit {
     @Input()
     maxDate: _moment.Moment = null;
     @Input()
+    defaultLeftCalendarMonth: _moment.Moment
+    @Input()
+    defaultRightCalendarMonth: _moment.Moment
+    @Input()
     autoApply: Boolean = false;
     @Input()
     singleDatePicker: Boolean = false;
@@ -576,6 +580,17 @@ export class DaterangepickerComponent implements OnInit {
     }
 
     updateMonthsInView() {
+        if (this.defaultLeftCalendarMonth) {
+            this.leftCalendar.month = this.defaultLeftCalendarMonth;
+            if (this.defaultRightCalendarMonth) {
+                this.rightCalendar.month = this.defaultRightCalendarMonth;
+            }
+            else {
+                this.rightCalendar.month = this.defaultLeftCalendarMonth.clone().date(2).add(1, 'month');
+            }
+            return;
+        }
+
         if (this.endDate) {
             // if both dates are visible already, do nothing
             if (!this.singleDatePicker && this.leftCalendar.month && this.rightCalendar.month &&
